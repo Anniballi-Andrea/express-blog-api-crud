@@ -9,9 +9,9 @@ const show = (req, res) => {
 
 
 
-    const filtredPost = posts.find(post => post.id === id)
+    const post = posts.find(post => post.id === id)
 
-    if (!filtredPost) {
+    if (!post) {
         res.status(404)
         return res.json({
             error: "Not found",
@@ -19,7 +19,7 @@ const show = (req, res) => {
         })
     }
 
-    res.json(filtredPost)
+    res.json(post)
 
 }
 
@@ -36,7 +36,24 @@ const modify = (req, res) => {
 }
 
 const destroy = (req, res) => {
-    res.send(`your trying delete a single post with id: ${req.params.id}`)
+    const id = Number(req.params.id)
+
+    const post = posts.find(post => post.id === id)
+
+    if (!post) {
+        res.status(404)
+        return res.json({
+            error: "Not found",
+            message: "post non trovato"
+        })
+    }
+
+    posts.splice(posts.indexOf(post), 1)
+
+
+
+
+    res.sendStatus(204)
 }
 
 module.exports = {
