@@ -1,30 +1,19 @@
 const express = require('express')
 const router = express.Router()
+const postController = require("../controllers/postController")
 
 
-router.get('/', (req, res) => {
-    res.send(`your bacheca with all posts`)
-})
+router.get('/', postController.index)
 
-router.get('/:id', (req, res) => {
-    res.send(`your searching a single post with id: ${req.params.id}`)
-})
+router.get('/:id', postController.show)
 
-router.post('/', (req, res) => {
-    res.send(`youre adding a new object in all posts`)
-})
+router.post('/', postController.store)
 
-router.put('/:id', (req, res) => {
-    res.send(`your trying completly modify a single post with id: ${req.params.id}`)
-})
+router.put('/:id', postController.update)
 
-router.patch('/:id', (req, res) => {
-    res.send(`your trying modify a part of a single post with id: ${req.params.id}`)
-})
+router.patch('/:id', postController.modify)
 
-router.delete('/:id', (req, res) => {
-    res.send(`your trying delete a single post with id: ${req.params.id}`)
-})
+router.delete('/:id', postController.destroy)
 
 
 module.exports = router
