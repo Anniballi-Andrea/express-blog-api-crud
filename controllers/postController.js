@@ -1,11 +1,26 @@
-
+const posts = require("../data/posts")
 
 const index = (req, res) => {
-    res.send(`your bacheca with all posts`)
+    res.json(posts)
 }
 
 const show = (req, res) => {
-    res.send(`your searching a single post with id: ${req.params.id}`)
+    const id = Number(req.params.id)
+
+
+
+    const filtredPost = posts.find(post => post.id === id)
+
+    if (!filtredPost) {
+        res.status(404)
+        return res.json({
+            error: "Not found",
+            message: "post non trovato"
+        })
+    }
+
+    res.json(filtredPost)
+
 }
 
 const store = (req, res) => {
