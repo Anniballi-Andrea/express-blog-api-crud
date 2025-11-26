@@ -3,12 +3,11 @@ const posts = require("../data/posts")
 const index = (req, res) => {
 
     if (req.query.tags) {
-        const tag = req.query.tags
+
+        let tag = req.query.tags
+        tag = tag[0].toUpperCase() + tag.slice(1)
+
         const filtredPost = posts.filter(el => el.tags.includes(tag))
-
-
-
-
 
         return res.json(filtredPost)
     }
