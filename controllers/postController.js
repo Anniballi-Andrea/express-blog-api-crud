@@ -42,7 +42,16 @@ const show = (req, res) => {
 
 const store = (req, res) => {
     console.log(req.body)
-    res.send(`youre adding a new object in all posts`)
+    const newId = posts[posts.length - 1].id + 1
+    const newPost = {
+        id: newId,
+        title: req.body.title,
+        content: req.body.content,
+        tags: req.body.tags,
+    }
+    posts.push(newPost)
+    res.status(201)
+    res.send(newPost)
 
 }
 
