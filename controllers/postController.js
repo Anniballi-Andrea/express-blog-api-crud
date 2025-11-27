@@ -41,12 +41,13 @@ const show = (req, res) => {
 }
 
 const store = (req, res) => {
-    console.log(req.body)
+
     const newId = posts[posts.length - 1].id + 1
     const newPost = {
         id: newId,
         title: req.body.title,
         content: req.body.content,
+        image: req.body.image,
         tags: req.body.tags,
     }
     posts.push(newPost)
@@ -56,7 +57,24 @@ const store = (req, res) => {
 }
 
 const update = (req, res) => {
-    res.send(`your trying completly modify a single post with id: ${req.params.id}`)
+    const id = Number(req.params.id)
+
+    const post = posts.find(post => post.id === id)
+
+    if (!post) {
+        res.status(404)
+        return res.json({
+            error: "Not found",
+            message: "post non trovato"
+        })
+    }
+    post.title = req.body.title
+    post.content = req.body.content
+    post.image = req.body.image
+    post.tags = req.body.tags
+
+
+    res.json(post)
 }
 
 const modify = (req, res) => {
