@@ -1,5 +1,7 @@
 const posts = require("../data/posts")
 
+
+
 const index = (req, res) => {
 
     if (req.query.tags) {
@@ -39,7 +41,9 @@ const show = (req, res) => {
 }
 
 const store = (req, res) => {
+    console.log(req.body)
     res.send(`youre adding a new object in all posts`)
+
 }
 
 const update = (req, res) => {

@@ -5,10 +5,13 @@ const postsRouter = require('./Routes/posts')
 
 
 app.use(express.static('public'))
+app.use(express.json())
+
 
 app.get('/', (req, res) => {
     res.send('welcome in my blog')
 })
+
 
 app.use('/posts', postsRouter)
 
