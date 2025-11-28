@@ -3,6 +3,8 @@ const app = express()
 const PORT = 3000
 const postsRouter = require('./Routes/posts')
 const notFound = require('./middleware/notFound')
+const errorsHandler = require('./middleware/errorsHandler')
+
 
 
 app.use(express.static('public'))
@@ -18,8 +20,9 @@ app.use('/posts', postsRouter)
 
 
 app.listen(PORT, () => {
-    console.log("hello")
+    console.log("server is running")
 })
 
 
+app.use(errorsHandler)
 app.use(notFound)
