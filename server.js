@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const PORT = 3000
 const postsRouter = require('./Routes/posts')
+const notFound = require('./middleware/notFound')
 
 
 app.use(express.static('public'))
@@ -19,3 +20,6 @@ app.use('/posts', postsRouter)
 app.listen(PORT, () => {
     console.log("hello")
 })
+
+
+app.use(notFound)
